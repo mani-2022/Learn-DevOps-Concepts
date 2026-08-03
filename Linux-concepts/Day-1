@@ -1,7 +1,4 @@
 Day 1 - Linux Fundamentals for DevOps
-Learning Objectives
-
-By the end of Day 1, you should understand:
 
 What Linux is
 Difference between Linux Kernel and Linux Distribution
@@ -14,6 +11,7 @@ File and Directory Operations
 Searching Files and Text
 Process vs Program
 Virtual Filesystem (/proc)
+
 1. What is Linux?
 
 Linux is an open-source operating system kernel developed by Linus Torvalds in 1991.
@@ -27,7 +25,8 @@ Device Management
 File System Management
 Network Management
 Security and Access Control
-Architecture
+
+Architecture:
 +----------------------+
 |   User Applications  |
 +----------------------+
@@ -39,7 +38,10 @@ Architecture
 +----------------------+
 |      Hardware        |
 +----------------------+
-2. Linux Kernel vs Linux Distribution
+
+
+2. Linux Kernel vs Linux Distribution:
+
 Linux Kernel
 
 The kernel is the heart of the operating system.
@@ -57,7 +59,8 @@ Examples:
 
 Linux Kernel 5.x
 Linux Kernel 6.x
-Linux Distribution
+
+Linux Distribution:
 
 A Linux Distribution (Distro) is a complete operating system built around the Linux kernel.
 
@@ -78,7 +81,9 @@ RHEL
 Rocky Linux
 AlmaLinux
 Fedora
-Interview Question
+
+
+Interview Question:
 
 Can Linux run with only the Kernel?
 
@@ -148,6 +153,7 @@ ps -p 1
 systemctl status sshd
 systemctl restart nginx
 systemctl enable docker
+
 4. Linux Filesystem Hierarchy
 
 Linux follows a hierarchical directory structure that starts from a single root directory (/).
@@ -171,7 +177,10 @@ Linux follows a hierarchical directory structure that starts from a single root 
 ├── tmp
 ├── usr
 └── var
+
+
 5. Important Linux Directories
+
 Directory	Purpose
 /	Root directory of the filesystem
 /bin	Essential system commands
@@ -192,15 +201,18 @@ Directory	Purpose
 /tmp	Temporary files
 /usr	User applications and libraries
 /var	Variable data such as logs, mail, cache, databases
+
 6. Absolute Path vs Relative Path
-Absolute Path
+
+Absolute Path:
 
 An absolute path always starts from the root directory (/).
 
 Example
 
 /home/manikanta/Documents/file.txt
-Relative Path
+
+Relative Path:
 
 A relative path starts from the current working directory.
 
@@ -217,6 +229,7 @@ Documents/file.txt
 is a relative path.
 
 7. Basic Navigation Commands
+
 Present Working Directory
 pwd
 
@@ -234,6 +247,7 @@ ls -l
 Include hidden files
 
 ls -la
+
 Change Directory
 cd /home
 
@@ -244,6 +258,7 @@ cd ~
 Go back one directory
 
 cd ..
+
 8. Creating Files and Directories
 
 Create a directory
@@ -257,6 +272,7 @@ mkdir -p DevOps/Linux/Lab1
 Create an empty file
 
 touch notes.txt
+
 9. Viewing File Content
 
 Display entire file
@@ -274,6 +290,7 @@ head file.txt
 Last 10 lines
 
 tail file.txt
+
 10. Copy, Move, Rename and Delete
 
 Copy file
@@ -303,6 +320,7 @@ Warning: Use rm -r and rm -rf with extreme caution, especially when running as r
 Find all .log files
 
 find . -name "*.log"
+
 12. Searching Text
 
 Find the word "ERROR"
@@ -312,8 +330,10 @@ grep "ERROR" app.log
 Search recursively
 
 grep -r "Linux" .
+
 13. Program vs Process
-Program
+
+Program:
 
 A program is a static executable stored on disk.
 
@@ -337,11 +357,13 @@ creates a Python process.
 View running processes
 
 ps -ef
+
 Interview Answer
 
 A program is stored on disk, while a process is a program currently executing in memory.
 
 14. What Happens When You Run ls?
+
 You type ls in the shell.
 The shell searches for the ls executable using the PATH environment variable.
 The shell creates a new process.
@@ -351,6 +373,7 @@ The kernel reads the filesystem metadata.
 The ls process formats the output.
 The shell displays the results.
 The process exits.
+
 15. The /proc Virtual Filesystem
 
 /proc is a virtual filesystem created dynamically by the Linux kernel.
@@ -374,6 +397,7 @@ cat /proc/version
 System Uptime
 
 cat /proc/uptime
+
 16. What Happens When You Delete a File?
 
 When you run:
@@ -385,7 +409,9 @@ The file is not moved to a recycle bin.
 Instead, Linux removes the directory entry pointing to the file. The data blocks may remain on disk until they are overwritten, but from a user's perspective, the file should be considered permanently deleted.
 
 Key Commands Learned
-Command	Description
+
+Command	Description:
+
 pwd	Print current working directory
 ls	List files and directories
 cd	Change directory
