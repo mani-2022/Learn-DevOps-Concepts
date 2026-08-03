@@ -1,0 +1,10 @@
+1. What is the Linux Kernel?
+2. Explain the Linux boot process.
+3. What is systemd?
+4. Differentiate between the Linux Kernel and a Linux Distribution.
+5. What is the purpose of /etc?
+6. Explain the Linux filesystem hierarchy.
+7. What is the difference between an absolute path and a relative path?
+8. Differentiate between a program and a process.
+9. What is the purpose of /proc?
+10. What happens internally when you execute the ls command?
