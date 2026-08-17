@@ -8,7 +8,7 @@ variable "project_name" {
   type        = string
 }
 
-variable "vpc_cidr_block" {
+variable "vpc_cidr" {
   description = "CIDR block for VPC"
   type        = string
 }
@@ -16,4 +16,16 @@ variable "vpc_cidr_block" {
 variable "environment" {
   description = "Environment for Deplopyment (eg: dev, staging, preprod, prod))"
   type        = string
+}
+
+variable "subnet_netbits" {
+  description = "Number of bits for subnet mask"
+  type        = number
+  default     = 8
+}
+
+variable "az_count" {
+  description = "Number of availability zones to use"
+  type        = number
+  default     = 3
 }

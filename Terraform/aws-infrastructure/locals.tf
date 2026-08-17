@@ -1,16 +1,7 @@
 locals {
 
-  availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  azs = slice(data.aws_availability_zones.available.names, 0, var.az_count)
 
-  public_subnets = {
-    "us-east-1a" = "10.0.1.0/24"
-    "us-east-1b" = "10.0.2.0/24",
-    "us-east-1c" = "10.0.3.0/24"
-  }
-  private_subnets = {
-    "us-east-1a" = "10.0.10.0/24",
-    "us-east-1b" = "10.0.20.0/24",
-    "us-east-1c" = "10.0.30.0/24"
-
-  }
+  public_subnets  = [for k, az in local.azs : cidrsubnet(var.vpc_cidr, var.subnet_netbits, k)]
+  private_subnets = [for k, az in local.azs : cidrsubnet(var.vpc_cidr, var.subnet_netbits, k + 10)]
 }
