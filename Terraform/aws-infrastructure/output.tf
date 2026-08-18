@@ -33,3 +33,16 @@ output "aws-nat_gateway_id" {
 output "aws_eip_id" {
   value = values(aws_eip.nat-eip)[*].id
 }
+
+output "aws_bastion_sg_id" {
+  value = aws_security_group.baiston.id
+}
+output "aws_bastion_public_ip" {
+  value = aws_instance.bastion.public_ip
+}
+
+output "aws_bastion_private_ip" {
+  value = aws_instance.bastion.private_ip
+}
+
+
