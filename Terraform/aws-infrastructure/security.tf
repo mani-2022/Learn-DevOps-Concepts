@@ -44,6 +44,13 @@ resource "aws_security_group" "application" {
     security_groups = [aws_security_group.alb.id]
   }
 
+  ingress {
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.baiston.id]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0

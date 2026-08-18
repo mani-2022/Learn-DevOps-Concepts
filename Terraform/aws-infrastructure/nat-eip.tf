@@ -10,7 +10,7 @@ resource "aws_eip" "nat-eip" {
 resource "aws_nat_gateway" "nat-gw" {
   for_each      = toset(local.azs)
   allocation_id = aws_eip.nat-eip[each.key].id
-  subnet_id     = aws_subnet.private[each.key].id
+  subnet_id     = aws_subnet.public[each.key].id
 
   tags = {
     Name = "${var.project_name}-${var.environment}-nat-gw-${each.key}"
