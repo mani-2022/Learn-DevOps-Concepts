@@ -13,3 +13,23 @@ output "public-subnet_ids" {
 output "private-subnet_ids" {
   value = values(aws_subnet.private)[*].id
 }
+
+output "aws_internet_gateway_id" {
+  value = aws_internet_gateway.igw.id
+}
+
+output "aws_public_route_table_id" {
+  value = aws_route_table.public-rt.id
+}
+
+output "aws_private_route_table_id" {
+  value = values(aws_route_table.private-rt)[*].id
+}
+
+output "aws-nat_gateway_id" {
+  value = values(aws_nat_gateway.nat-gw)[*].id
+}
+
+output "aws_eip_id" {
+  value = values(aws_eip.nat-eip)[*].id
+}
