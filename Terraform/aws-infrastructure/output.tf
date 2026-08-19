@@ -49,4 +49,7 @@ output "aws_private_ip" {
   value = aws_instance.private.private_ip
 }
 
+output "alb_dns_name" {
+  value = aws_lb.app_lb.dns_name
+}
 
