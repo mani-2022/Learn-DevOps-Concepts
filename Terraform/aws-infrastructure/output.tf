@@ -60,3 +60,7 @@ output "rds_endpoint" {
 output "rds_port" {
   value = aws_db_instance.postgres.port
 }
+
+output "aws_s3_bucket_name" {
+  value = aws_s3_bucket.app_bucket.id
+}

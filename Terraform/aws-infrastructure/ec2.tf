@@ -16,6 +16,7 @@ resource "aws_instance" "private" {
   instance_type               = var.instance_type
   subnet_id                   = aws_subnet.private["us-east-1a"].id
   vpc_security_group_ids      = [aws_security_group.application.id]
+  iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
   key_name                    = var.key_name
   associate_public_ip_address = false
 
