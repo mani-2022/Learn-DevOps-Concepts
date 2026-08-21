@@ -64,3 +64,7 @@ output "rds_port" {
 output "aws_s3_bucket_name" {
   value = aws_s3_bucket.app_bucket.id
 }
+
+output "aws_db_secret_arn" {
+  value = aws_secretsmanager_secret.db_credentials.arn
+}

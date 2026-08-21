@@ -63,3 +63,32 @@ resource "aws_iam_role_policy_attachment" "ec2_s3_read" {
   role       = aws_iam_role.ec2_role.name
   policy_arn = aws_iam_policy.ec2_s3_policy.arn
 }
+
+resource "aws_iam_policy" "ec2_secrets_read" {
+  name = "${var.project_name}-${var.environment}-ec2-secrets-read"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Action = [
+          "secretsmanager:GetSecretValue"
+        ]
+
+        Resource = aws_secretsmanager_secret.db_credentials.arn
+      }
+    ]
+  })
+
+  tags = {
+    Name = "${var.project_name}-${var.environment}-ec2-secrets-read"
+  }
+}
+
+resource "aws_iam_role_policy_attachment" "ec2-secret-read" {
+  role       = aws_iam_role.ec2_role.name
+  policy_arn = aws_iam_policy.ec2_secrets_read.arn
+}
