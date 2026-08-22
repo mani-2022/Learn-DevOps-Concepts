@@ -92,3 +92,39 @@ resource "aws_iam_role_policy_attachment" "ec2-secret-read" {
   role       = aws_iam_role.ec2_role.name
   policy_arn = aws_iam_policy.ec2_secrets_read.arn
 }
+
+resource "aws_iam_policy" "ec2_ecr_pull" {
+  name = "${var.project_name}-${var.environment}-ecr-pull"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Action = [
+          "ecr:GetAuthorizationToken"
+        ]
+
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+
+        Action = [
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage"
+        ]
+
+        Resource = aws_ecr_repository.app.arn
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ec2_ecr_pull" {
+  role       = aws_iam_role.ec2_role.name
+  policy_arn = aws_iam_policy.ec2_ecr_pull.arn
+}

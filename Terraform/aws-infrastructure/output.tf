@@ -65,6 +65,18 @@ output "aws_s3_bucket_name" {
   value = aws_s3_bucket.app_bucket.id
 }
 
+output "aws_db_secret_name" {
+  value = aws_secretsmanager_secret.db_credentials.name
+}
 output "aws_db_secret_arn" {
   value = aws_secretsmanager_secret.db_credentials.arn
 }
+
+output "aws_ecr_repo_id" {
+  value = aws_ecr_repository.app.id
+}
+
+output "aws_ecr_repo_url" {
+  value = aws_ecr_repository.app.repository_url
+}
+
