@@ -1,7 +1,7 @@
 resource "aws_security_group" "alb" {
   name        = "ALB-SG"
   description = "Security group for the alb"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "HTTP requests from outside(Internet)"
@@ -34,7 +34,7 @@ resource "aws_security_group" "alb" {
 resource "aws_security_group" "application" {
   name        = "Application-SG"
   description = "Security group for the application"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port       = 22
@@ -66,7 +66,7 @@ resource "aws_security_group" "application" {
 resource "aws_security_group" "database" {
   name        = "Database-SG"
   description = "Security group for the Database"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   ingress {
     description     = "Accept requests form application"
@@ -91,7 +91,7 @@ resource "aws_security_group" "database" {
 resource "aws_security_group" "baiston" {
   name        = "baiston"
   description = "Allow SSH traffic and all outbound traffic"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 22

@@ -45,7 +45,7 @@ resource "aws_iam_policy" "ec2_s3_policy" {
           "s3:ListBucket" #For the least privelage we have used "S3:ListBucket" to allows listing objects inside a specific bucket. To list all the buckets use "ListAllMyBuckets"
         ]
         Effect   = "Allow"
-        Resource = aws_s3_bucket.app_bucket.arn
+        Resource = var.s3_bucket_arn
       },
 
       {
@@ -53,7 +53,7 @@ resource "aws_iam_policy" "ec2_s3_policy" {
           "s3:GetObject"
         ]
         Effect   = "Allow"
-        Resource = "${aws_s3_bucket.app_bucket.arn}/*"
+        Resource = "${var.s3_bucket_arn}/*"
       }
     ]
   })
@@ -78,7 +78,7 @@ resource "aws_iam_policy" "ec2_secrets_read" {
           "secretsmanager:GetSecretValue"
         ]
 
-        Resource = aws_secretsmanager_secret.db_credentials.arn
+        Resource = var.aws_db_secret_arn
       }
     ]
   })
@@ -118,7 +118,7 @@ resource "aws_iam_policy" "ec2_ecr_pull" {
           "ecr:BatchGetImage"
         ]
 
-        Resource = aws_ecr_repository.app.arn
+        Resource = var.aws_ecr_repo_arn
       }
     ]
   })

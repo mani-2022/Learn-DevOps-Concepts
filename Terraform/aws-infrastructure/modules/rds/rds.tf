@@ -1,7 +1,6 @@
 resource "aws_db_subnet_group" "database" {
   name       = "${var.project_name}-${var.environment}-db-subnet-group"
-  subnet_ids = [for subnet in aws_subnet.private : subnet.id]
-
+  subnet_ids = values(var.private-subnet_ids)
 
   tags = {
     Name = "${var.project_name}-${var.environment}-database"
@@ -18,7 +17,7 @@ resource "aws_db_instance" "postgres" {
   db_name                 = var.db_name
   username                = var.db_username
   password                = var.db_password
-  vpc_security_group_ids  = [aws_security_group.database.id]
+  vpc_security_group_ids  = [var.database_sg_id]
   db_subnet_group_name    = aws_db_subnet_group.database.name
   publicly_accessible     = false
   skip_final_snapshot     = true

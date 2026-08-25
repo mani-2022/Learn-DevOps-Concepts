@@ -1,0 +1,41 @@
+output "vpc_id" {
+  value = aws_vpc.main.id
+}
+
+output "vpc_cidr_block" {
+  value = aws_vpc.main.cidr_block
+}
+
+output "public-subnet_ids" {
+  value = {
+    for az, subnet in aws_subnet.public :
+    az => subnet.id
+  }
+}
+
+output "private-subnet_ids" {
+  value = {
+    for az, subnet in aws_subnet.private :
+    az => subnet.id
+  }
+}
+
+output "aws_internet_gateway_id" {
+  value = aws_internet_gateway.igw.id
+}
+
+output "aws_public_route_table_id" {
+  value = aws_route_table.public-rt.id
+}
+
+output "aws_private_route_table_id" {
+  value = values(aws_route_table.private-rt)[*].id
+}
+
+output "aws-nat_gateway_id" {
+  value = values(aws_nat_gateway.nat-gw)[*].id
+}
+
+output "aws_eip_id" {
+  value = values(aws_eip.nat-eip)[*].id
+}

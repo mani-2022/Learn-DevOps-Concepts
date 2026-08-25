@@ -1,82 +1,94 @@
 output "vpc_id" {
-  value = aws_vpc.main.id
+  value = module.vpc.vpc_id
 }
 
 output "vpc_cidr_block" {
-  value = aws_vpc.main.cidr_block
+  value = module.vpc.vpc_cidr_block
 }
 
 output "public-subnet_ids" {
-  value = values(aws_subnet.public)[*].id
+  value = values(module.vpc.public-subnet_ids)
 }
 
 output "private-subnet_ids" {
-  value = values(aws_subnet.private)[*].id
+  value = values(module.vpc.private-subnet_ids)
 }
 
 output "aws_internet_gateway_id" {
-  value = aws_internet_gateway.igw.id
+  value = module.vpc.aws_internet_gateway_id
 }
 
 output "aws_public_route_table_id" {
-  value = aws_route_table.public-rt.id
+  value = module.vpc.public-subnet_ids
 }
 
 output "aws_private_route_table_id" {
-  value = values(aws_route_table.private-rt)[*].id
+  value = module.vpc.private-subnet_ids
 }
 
 output "aws-nat_gateway_id" {
-  value = values(aws_nat_gateway.nat-gw)[*].id
+  value = module.vpc.aws-nat_gateway_id
 }
 
 output "aws_eip_id" {
-  value = values(aws_eip.nat-eip)[*].id
+  value = module.vpc.aws_eip_id
 }
 
 output "aws_bastion_sg_id" {
-  value = aws_security_group.baiston.id
-}
-output "aws_bastion_public_ip" {
-  value = aws_instance.bastion.public_ip
+  value = module.security-group.aws_bastion_sg_id
 }
 
-output "aws_bastion_private_ip" {
-  value = aws_instance.bastion.private_ip
+output "application_sg_id" {
+  value = module.security-group.application_sg_id
+}
+
+output "database_sg_id" {
+  value = module.security-group.database_sg_id
+}
+
+output "aws_bastion_public_ip" {
+  value = module.ec2.aws_bastion_public_ip
 }
 
 output "aws_private_ip" {
-  value = aws_instance.private.private_ip
+  value = module.ec2.aws_private_ip
 }
 
 output "alb_dns_name" {
-  value = aws_lb.app_lb.dns_name
+  value = module.alb.alb_dns_name
 }
 
 output "rds_endpoint" {
-  value = aws_db_instance.postgres.address
+  value = module.rds.rds_endpoint
 }
 
 output "rds_port" {
-  value = aws_db_instance.postgres.port
+  value = module.rds.rds_port
 }
 
 output "aws_s3_bucket_name" {
-  value = aws_s3_bucket.app_bucket.id
+  value = module.s3.aws_s3_bucket_name
+}
+
+output "s3_bucket_arn" {
+  value = module.s3.s3_bucket_arn
 }
 
 output "aws_db_secret_name" {
-  value = aws_secretsmanager_secret.db_credentials.name
+  value = module.secrets.aws_db_secret_name
 }
 output "aws_db_secret_arn" {
-  value = aws_secretsmanager_secret.db_credentials.arn
+  value = module.secrets.aws_db_secret_arn
 }
 
 output "aws_ecr_repo_id" {
-  value = aws_ecr_repository.app.id
+  value = module.ecr.aws_ecr_repo_id
 }
 
 output "aws_ecr_repo_url" {
-  value = aws_ecr_repository.app.repository_url
+  value = module.ecr.aws_ecr_repo_url
 }
 
+output "aws_ecr_repo_arn" {
+  value = module.ecr.aws_ecr_repo_arn
+}
