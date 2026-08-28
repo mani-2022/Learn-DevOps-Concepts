@@ -1,6 +1,11 @@
-project_name = "real-production-project"
-environment  = "dev"
-aws_region   = "us-east-1"
-vpc_cidr     = "10.0.0.0/16"
-db_name      = "appdb"
-db_username  = "appuser"
+project_name       = "real-production-project"
+environment        = "dev"
+aws_region         = "us-east-1"
+vpc_cidr           = "10.0.0.0/16"
+db_name            = "appdb"
+db_username        = "appuser"
+node_instance_type = "t3.small"
+node_desired_size  = 2
+node_min_size      = 1
+node_max_size      = 3
+node_disk_size     = 20

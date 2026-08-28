@@ -59,3 +59,28 @@ variable "db_password" {
   type        = string
   sensitive   = true
 }
+
+variable "node_instance_type" {
+  type        = string
+  description = "EC2 instance type for EKS worker nodes"
+}
+
+variable "node_desired_size" {
+  type        = number
+  description = "Desired number of EKS worker nodes"
+}
+
+variable "node_min_size" {
+  type        = number
+  description = "Minimum number of EKS worker nodes"
+}
+
+variable "node_max_size" {
+  type        = number
+  description = "Maximum number of EKS worker nodes"
+}
+
+variable "node_disk_size" {
+  type        = number
+  description = "Disk size in GiB for EKS worker nodes"
+}

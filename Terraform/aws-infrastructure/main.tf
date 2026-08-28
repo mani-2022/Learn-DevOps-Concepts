@@ -81,5 +81,10 @@ module "eks" {
   project_name       = var.project_name
   environment        = var.environment
   vpc_id             = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private-subnet_ids
+  private-subnet_ids = module.vpc.private-subnet_ids
+  node_desired_size  = var.node_desired_size
+  node_disk_size     = var.node_disk_size
+  node_instance_type = var.node_instance_type
+  node_max_size      = var.node_max_size
+  node_min_size      = var.node_min_size
 }
